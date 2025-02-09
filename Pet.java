@@ -1,10 +1,20 @@
 public class Pet{
    //private data fields
    private String name;
+   private int age;
+   private String type;
    
    //public Constructor
    public Pet(){
-      this.setName("");
+      setName("Name");
+      setAge(0);
+      setType("Animal");
+   }
+   
+   public Pet(String newName, int newAge, String newType){
+      this.setName(newName);
+      this.setAge(newAge);
+      this.setType(newType);
    }
    
    //public mutator method
@@ -12,25 +22,49 @@ public class Pet{
       this.name = newName;
    }
    
+   
+   public void setAge(int newAge){
+      this.age = newAge;
+   }
+   
+   
+   public void setType(String newType){
+      this.type = newType;
+   }
+
    //public accessor, returns data
    public String getName(){
       return this.name;
    }
    
+   public int getAge(){
+      return this.age;
+   }
+   
+   public String getType(){
+      return this.type;
+   }
+   
    //public toString method that prints out all of the object state
    public String toString(){
-      String output = "Pet information \nName: ";
-      output+= this.getName();
+      String output = "Pet information\nType: "+getType()+"\nName: "+getName()+"\nAge: "+getAge();
+      output+= "\nSound: " + speak(getType());
       return output;
    }
    
-   //Main method
-   public static void main(String args[]){
-      Pet myPet1 = new Pet();
-      Pet myPet2 = new Pet();
-      myPet1.setName("Pet Name");
-      myPet2.setName("Buster Brown");
-      //System.out.println(myPet1.getName()); //>Returns only the name and does not go to "toString"
-      System.out.println(myPet1+"\n\n"+myPet2);//>Goes directly to "toString"
+   public String speak(String type){
+      if(type.equalsIgnoreCase("dog")){//ignores whether input is capitilized or not
+         return "woof";
+      }
+      
+      else if(type.equalsIgnoreCase("cat")){
+         return "Meow";
+      }
+      
+      else if(type.equalsIgnoreCase("fish")){
+         return "Gulp";
+      }
+      else{return "Noise";}
    }
+   
 }
